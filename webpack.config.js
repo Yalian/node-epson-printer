@@ -1,35 +1,25 @@
-const path = require('path');
-const webpack = require('webpack');
+var webpack = require('webpack');
+var path = require('path');
+var fs = require('fs');
+
+var nodeModules = {};
+fs.readdirSync('node_modules')
+  .filter(function(x) {
+    return ['.bin'].indexOf(x) === -1;
+  })
+  .forEach(function(mod) {
+    nodeModules[mod] = 'commonjs ' + mod;
+  });
+
 module.exports = {
-  context: path.resolve(__dirname, './src'),
-  entry: {
-    index: './index.js',
-  },
+  entry: './src/index.js',
+  target: 'node',
   output: {
-    path: path.resolve(__dirname, './build'),
-    filename: '[name].bundle.js',
+    path: path.join(__dirname, 'build'),
+    filename: 'index.js',
+    libraryTarget : "commonjs"
   },
-  devServer: {
-    contentBase: path.resolve(__dirname, './build'),  // New
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: [/node_modules/],
-        use: [{
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['env', {
-                'targets': {
-                  'node': 'current'
-                }
-              }]
-            ]
-          }
-        }],
-      },
-    ],
-  },
-};
+  externals: nodeModules,
+  plugins: [],
+  devtool: 'sourcemap'
+}
