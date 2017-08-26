@@ -9,7 +9,6 @@
     "get-pixels": "^3.3.0",
     "iconv-lite": "^0.4.18",
     "mutable-buffer": "^2.0.3",
-    "qr-image": "^3.2.0",
-    "escpos": "2.4.3"
+    "qr-image": "^3.2.0"
   }
 }
