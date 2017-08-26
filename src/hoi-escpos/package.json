@@ -1,0 +1,16 @@
+{
+  "name": "hoi-escpos",
+  "version": "0.0.1",
+  "description": "ESC/POS Printer driver for nodejs",
+  "main": "index.js",
+  "keywords": [
+    "escpos",
+    "printer"
+  ],
+  "dependencies": {
+    "iconv-lite": "*",
+    "mutable-buffer": "*",
+    "get-pixels": "*",
+    "qr-image": "*"
+  }
+}
